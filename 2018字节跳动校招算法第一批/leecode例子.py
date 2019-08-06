@@ -5,6 +5,9 @@ Created on Tue Aug  6 15:52:48 2019
 @author: yifeng
 """
 
+# 题目详解参考
+# https://blog.csdn.net/weixin_42001089/article/details/84203651
+
 class Solution:
     def largestRectangleArea(self,heights):
         heights.append(0)
