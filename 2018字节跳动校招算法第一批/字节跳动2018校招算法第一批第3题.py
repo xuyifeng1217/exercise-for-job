@@ -47,6 +47,7 @@ def find_finish_time(time_ideas,n_chengxuyuan,n_idea):
     
     while True:
         time += 1
+        # 对正在执行idea,所需时间-1
         if zhixing_ideas: # zhixing_ideas != []
             deleted_ideas = []
             for i in zhixing_ideas:
@@ -59,9 +60,10 @@ def find_finish_time(time_ideas,n_chengxuyuan,n_idea):
                 i.append(time) # 5:执行完成时间
                 finish_ideas.append(i)
                 
+        # 若无正在执行idea 且 剩余idea数为0， 结束循环
         if not zhixing_ideas and n_idea==0:
             break
-        
+        # 时刻t，更新pm提出的idea
         for t in time_ideas.keys():
             if t==time:
                 for i in time_ideas[t]:
@@ -70,6 +72,8 @@ def find_finish_time(time_ideas,n_chengxuyuan,n_idea):
                     pm_idea_dict[i[0]].append(i)
                     n_weizhixing_idea += 1
                 break
+        # 若还有程序员 且 还有现有任务，
+        # 找出每个pm最想落实的idea,判断实现哪个idea,加入执行队列，并从未执行队列中删除
         while n_chengxuyuan > 0 and n_weizhixing_idea > 0:
             pm_want_idea = []
             for i in pm_idea_dict.keys():
